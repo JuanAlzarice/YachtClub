@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Socio</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    </head>
+    <body class="container py-4">
+        <h2 th:text="${socio.idSocio} == null ? 'Nuevo Socio' : 'Editar Socio'"></h2>
+        <form th:action="@{/socios/guardar}" th:object="${socio}" method="post">
+            <input type="hidden" th:field="*{idSocio}">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" th:field="*{nombre}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">DNI</label>
+                <input type="text" class="form-control" th:field="*{dni}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Dirección</label>
+                <input type="text" class="form-control" th:field="*{direccion}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Teléfono</label>
+                <input type="text" class="form-control" th:field="*{telefono}">
+            </div>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a th:href="@{/socios}" class="btn btn-secondary">Volver</a>
+        </form>
+    </body>
+</html>

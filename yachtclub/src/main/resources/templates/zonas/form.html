@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Zona</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    </head>
+    <body class="container py-4">
+        <h2 th:text="${zona.idZona} == null ? 'Nueva Zona' : 'Editar Zona'"></h2>
+        <form th:action="@{/zonas/guardar}" th:object="${zona}" method="post">
+
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input class="form-control" th:field="*{nombre}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Precio Mensual</label>
+                <input type="number" step="0.1" class="form-control" th:field="*{precioMensual}">
+            </div>
+
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a th:href="@{/zonas}" class="btn btn-secondary">Volver</a>
+        </form>
+
+
+        <!-- comment <form th:action="@{/zonas/guardar}" th:object="${zona}" method="post">
+          <div class="mb-3"><label class="form-label">Letra</label><input class="form-control" th:field="*{letra}" maxlength="1"></div>
+          <div class="mb-3"><label class="form-label">Tipo de Barcos</label><input class="form-control" th:field="*{tipoBarcos}"></div>
+          <div class="mb-3"><label class="form-label">Cantidad de Barcos</label><input type="number" class="form-control" th:field="*{cantidadBarcos}"></div>
+          <div class="mb-3"><label class="form-label">Profundidad</label><input type="number" step="0.1" class="form-control" th:field="*{profundidad}"></div>
+          <div class="mb-3"><label class="form-label">Ancho Amarres</label><input type="number" step="0.1" class="form-control" th:field="*{anchoAmarres}"></div>
+          <button type="submit" class="btn btn-success">Guardar</button>
+          <a th:href="@{/zonas}" class="btn btn-secondary">Volver</a>
+        </form> 
+        --> 
+    </body>
+</html>

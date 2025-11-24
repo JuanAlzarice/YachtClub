@@ -1,0 +1,26 @@
+# Maven
+/target/
+/out/
+
+# IntelliJ
+/.idea/
+/*.iml
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# SO
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# NO subir credenciales reales
+src/main/resources/application.properties
+src/main/resources/application-*.properties
+
+# Node
+node_modules/
