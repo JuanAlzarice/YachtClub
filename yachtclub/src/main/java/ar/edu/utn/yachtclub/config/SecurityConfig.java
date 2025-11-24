@@ -7,10 +7,6 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-//Configura el login en /login y redirige a /index tras autenticarse. 
-//🧑‍💼 Admin //Usuario: admin //Contraseña: admin123 // 
-//👷 Empleados //Usuario: empleado1 //Contraseña: emp123 // 
-//👤 Socios //Usuario: juanp //Contraseña: 123
 @Configuration
 public class SecurityConfig {
 
