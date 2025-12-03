@@ -2,6 +2,7 @@
 package ar.edu.utn.yachtclub.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,13 +15,23 @@ public class Socio {
     @Column(name = "id_socio")
     private Long id;
 
+    @NotBlank(message = "Los nombres son obligatorios")
+    @Size(min = 2, max = 100, message = "Los nombres deben tener entre 2 y 100 caracteres")
     private String nombre;
+    
+    
     private String direccion;
 
+    @NotNull(message = "El DNI es obligatorio")
+    @Min(value = 10000000, message = "El DNI debe tener al menos 8 dígitos")
+    @Max(value = 999999999, message = "El DNI no puede tener más de 9 dígitos")
     @Column(unique = true)
     private String dni;
 
     private String telefono;
+    
+    
+    @Past(message = "La fecha de nacimiento debe ser anterior a hoy")
     private LocalDate fechaIngreso;
 
     @OneToMany(mappedBy = "socio", cascade = CascadeType.ALL)

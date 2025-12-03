@@ -1,6 +1,7 @@
 package ar.edu.utn.yachtclub.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +12,14 @@ public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmpleado;
-
+    
+    @NotNull(message= "Codigo Obligatorio")
     @Column(unique = true, nullable = false)
     private String codigo;
 
+    @NotBlank(message ="Nombre es obligatorio")
     private String nombre;
+    
     private String direccion;
     private String telefono;
     private String especialidad;

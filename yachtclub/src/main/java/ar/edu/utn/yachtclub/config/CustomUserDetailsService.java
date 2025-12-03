@@ -23,11 +23,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (usuario == null) {
             throw new UsernameNotFoundException("Usuario no encontrado: " + username);
         }
-        // Construir lista de autoridades (roles) del usuario
+
         List<GrantedAuthority> authorities = new ArrayList<>();
-        String roleName = usuario.getRol().getNombre(); // ej. "ADMIN", "EMPLEADO", "SOCIO"
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + roleName));
-        // Usamos la clase User de Spring Security
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + usuario.getRol().getNombre()));
+
         return new org.springframework.security.core.userdetails.User(
                 usuario.getUsername(),
                 usuario.getPassword(),

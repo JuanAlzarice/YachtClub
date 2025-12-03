@@ -16,7 +16,7 @@
         <p><strong>Dirección:</strong> <span th:text="${socio.direccion}"></span></p>
         <p><strong>Teléfono:</strong> <span th:text="${socio.telefono}"></span></p>
 
-        <a href="/index" class="btn btn-primary mt-3">Volver</a>
+       <div th:replace="fragments/botones :: volver"></div>
     </div>
 </div>
 </body>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <!-- Fragmento de botones de navegación -->
+    <div th:fragment="volver">
+        <a sec:authorize="hasRole('ADMIN')" th:href="@{/admin/menu}" class="btn btn-secondary">Volver al menú</a>
+        <a sec:authorize="hasRole('EMPLEADO')" th:href="@{/empleado/menu}" class="btn btn-secondary">Volver al menú</a>
+        <a sec:authorize="hasRole('SOCIO')" th:href="@{/socio/menu}" class="btn btn-secondary">Volver al menú</a>
+    </div>
+</body>
+</html>

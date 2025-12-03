@@ -33,6 +33,7 @@ public List<Embarcacion> listarPorSocio(Long idSocio) {
     @Override
     public void eliminar(Long id) { repo.deleteById(id);}
     
+@Override
     public boolean existeMatricula(String matricula) {
     return repo.existsByMatricula(matricula);
 }

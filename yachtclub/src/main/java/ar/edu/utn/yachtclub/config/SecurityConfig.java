@@ -1,14 +1,23 @@
+
 package ar.edu.utn.yachtclub.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableMethodSecurity(prePostEnabled = true) // habilita @PreAuthorize en controladores
 public class SecurityConfig {
+
+    private final CustomSuccessHandler customSuccessHandler;
+
+    public SecurityConfig(CustomSuccessHandler customSuccessHandler) {
+        this.customSuccessHandler = customSuccessHandler;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -17,39 +26,24 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
                 // páginas públicas
-                .requestMatchers("/", "/index", "/login", "/css/**", "/js/**", "/images/**").permitAll()
-                // SOCIO solo sus datos y embarcaciones
-                .requestMatchers("/socios/mis-datos").hasRole("SOCIO")
-                .requestMatchers("/embarcaciones/mias").hasRole("SOCIO")
-                // ADMIN y EMPLEADO rutas compartidas
-                .requestMatchers("/socios/**").hasAnyRole("ADMIN", "EMPLEADO")
-                .requestMatchers("/embarcaciones/**").hasAnyRole("ADMIN", "EMPLEADO")
-                // EMPLEADO solo sus zonas
-                .requestMatchers("/empleadozona/mis-zonas").hasRole("EMPLEADO")
-                .requestMatchers("/zonas/mia").hasRole("EMPLEADO")
-                // ADMIN solo
-                .requestMatchers("/amarres/**", "/zonas/**", "/empleados/**", "/compras/**").hasRole("ADMIN")
-                .requestMatchers("/usuarios/**").hasRole("ADMIN")
-                .requestMatchers("/empleadozona/nuevo", "/empleadozona/lista",
-                        "/empleadozona/editar/**", "/empleadozona/eliminar/**").hasRole("ADMIN")
+                .requestMatchers("/", "/index", "/login","/contact", "/about", "/css/**", "/js/**", "/images/**").permitAll()
                 // cualquier otra ruta requiere login
                 .anyRequest().authenticated()
-                )
-                .formLogin(login -> login
+            )
+            .formLogin(login -> login
                 .loginPage("/login")
-                .defaultSuccessUrl("/index", true)
+                .successHandler(customSuccessHandler)
                 .permitAll()
-                )
-                .logout(logout -> logout
+            )
+            .logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout")
                 .permitAll()
-                );
+            );
 
         return http.build();
     }
