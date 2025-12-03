@@ -11,7 +11,6 @@ public class YachtclubApplication {
         System.out.println("==============================================");
         System.out.println("Aplicación Yacht Club Puerto Madero iniciada!");
         System.out.println("URL: http://localhost:8080/");
-        System.out.println("API REST: http://localhost:8080/login");
         System.out.println("==============================================");
     }
 
