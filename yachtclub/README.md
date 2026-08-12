@@ -96,18 +96,14 @@ src/main/resources/application.properties
 
 Por motivos de seguridad, este archivo no debe incluirse en el repositorio cuando contiene credenciales reales.
 
-Se proporciona como referencia:
 
-```text
-src/main/resources/application-example.properties
-```
 
 ## Configuración
 
-Copiar el archivo de ejemplo:
+agregar el archivo  :
 
 ```text
-application-example.properties
+application.properties
 ```
 
 como:
@@ -197,9 +193,6 @@ Durante el desarrollo se aplicaron conceptos vistos en Programación II, entre e
 ## Integrantes
 
 - Juan Alzarice
-- [Integrante 2]
-- [Integrante 3]
-- [Integrante 4]
 
 ## Proyecto
 
