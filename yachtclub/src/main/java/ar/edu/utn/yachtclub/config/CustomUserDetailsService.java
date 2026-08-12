@@ -24,6 +24,11 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Usuario no encontrado: " + username);
         }
 
+//        Usuario usuario = usuarioRepository.findByUsername(username).orElseThrow(()->
+//                new UsernameNotFoundException("Usuario no encontrado: " + username));
+//    <<esta modificacion es para no trabajar con null,(debo cambiar el usuario a Optinal>>
+        
+        
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + usuario.getRol().getNombre()));
 

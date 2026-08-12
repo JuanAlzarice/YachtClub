@@ -34,7 +34,7 @@
                     </td>
                     <td>
                         <!-- Solo Admin puede eliminar -->
-                        <a sec:authorize="hasAuthority('ROLE_ADMIN')"
+                        <a sec:authorize="hasAuthority('ROLE_SUPERVISOR')"
                            th:href="@{'/usuarios/eliminar/' + ${u.id}}" class="btn btn-danger btn-sm">Eliminar</a>
                         <a sec:authorize="hasAuthority('ROLE_ADMIN')" 
                            th:href="@{'/usuarios/editar/' + ${u.id}}" class="btn btn-warning btn-sm">Editar</a>

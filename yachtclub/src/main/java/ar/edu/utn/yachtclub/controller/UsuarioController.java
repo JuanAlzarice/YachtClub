@@ -22,8 +22,8 @@ public class UsuarioController {
     @Autowired
     private RolService rolService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/lista")
     public String listar(Model model) {
@@ -43,7 +43,7 @@ public class UsuarioController {
 
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute Usuario usuario, @RequestParam(required = false) Long rolSeleccionado) {
-        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+//        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         usuario.setEnabled(true);
 
         if (rolSeleccionado != null) {

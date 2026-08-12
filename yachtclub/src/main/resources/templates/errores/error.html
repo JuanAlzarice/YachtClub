@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title th:text="${titulo} ?: 'Error - Yacht Club'">Error - Yacht Club</title>
+        <style>
+            body {
+                background-color: #f8f9fa;
+                font-family: Arial, sans-serif;
+            }
+            .error-card {
+                max-width: 520px;
+                margin: 80px auto;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                background-color: #ffffff;
+                text-align: center;
+            }
+            .error-title {
+                color: #d9534f;
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+            .error-message {
+                color: #555555;
+                font-size: 1rem;
+                margin-bottom: 25px;
+                line-height: 1.5;
+            }
+            .btn-volver {
+                display: inline-block;
+                padding: 10px 22px;
+                background-color: #0d6efd;
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 5px;
+                font-weight: bold;
+                transition: background-color 0.2s ease-in-out;
+            }
+            .btn-volver:hover {
+                background-color: #0b5ed7;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="error-card">
+            <!-- Renderiza el título que le envía el Handler (ej: "Registro duplicado") -->
+            <h2 class="error-title" th:text="${titulo}">Ocurrió un error</h2>
+
+            <!-- Renderiza el mensaje de la excepción (ej: ex.getMessage()) -->
+            <p class="error-message" th:text="${mensaje}">
+                Ha ocurrido un problema al procesar la solicitud.
+            </p>
+
+            <!-- Redirección segura a la lista de socios -->
+            <a class="btn-volver" th:href="@{/socios}">Volver al panel principal</a>
+        </div>
+
+    </body>
+</html>

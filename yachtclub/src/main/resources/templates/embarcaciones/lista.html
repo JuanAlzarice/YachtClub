@@ -21,10 +21,10 @@
                     <td th:text="${e.matricula}"></td>
                     <td th:text="${e.tipo}"></td>
                     <td>
-                        <div sec:authorize="hasAnyRole('ADMIN','EMPLEADO')">
+                        <div sec:authorize="hasAnyRole('ADMIN','EMPLEADO','SUPERVISOR')">
                             <a th:href="@{'/embarcaciones/editar/' + ${e.idEmbarcacion}}" class="btn btn-sm btn-warning">Editar</a>
                         </div>
-                        <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+                        <div sec:authorize="hasAuthority('ROLE_SUPERVISOR')">
                             <a th:href="@{'/embarcaciones/eliminar/' + ${e.idEmbarcacion}}" 
                                class="btn btn-danger btn-sm">Eliminar</a>
                         </div>

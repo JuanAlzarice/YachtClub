@@ -1,10 +1,10 @@
-
 package ar.edu.utn.yachtclub.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -21,29 +21,29 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(auth -> auth
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
                 // páginas públicas
-                .requestMatchers("/", "/index", "/login","/contact", "/about", "/css/**", "/js/**", "/images/**").permitAll()
-                // cualquier otra ruta requiere login
+                .requestMatchers("/", "/index", "/login", "/contact", "/about", "/css/**", "/js/**", "/images/**").permitAll()
+                // cualquier otra ruta requiere logearse
                 .anyRequest().authenticated()
-            )
-            .formLogin(login -> login
+                )
+                .formLogin(login -> login
                 .loginPage("/login")
                 .successHandler(customSuccessHandler)
                 .permitAll()
-            )
-            .logout(logout -> logout
+                )
+                .logout(logout -> logout
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout")
                 .permitAll()
-            );
+                );
 
         return http.build();
     }

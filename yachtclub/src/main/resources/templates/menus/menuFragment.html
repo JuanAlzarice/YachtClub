@@ -17,6 +17,9 @@
                             <li sec:authorize="hasRole('ADMIN')" class="nav-item">
                                 <a class="nav-link" th:href="@{/admin/menu}">Menú Admin</a>
                             </li>
+                            <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                                <a class="nav-link" th:href="@{/supervisor/menu}">Menú Supervisor</a>
+                            </li>
                             <li sec:authorize="hasRole('EMPLEADO')" class="nav-item">
                                 <a class="nav-link" th:href="@{/empleado/menu}">Menú Empleado</a>
                             </li>

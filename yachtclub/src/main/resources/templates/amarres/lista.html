@@ -26,7 +26,8 @@
                     <td th:text="${a.mantenimiento} ? 'Sí' : 'No'"></td>
                     <td>
                         <a th:href="@{'/amarres/editar/' + ${a.idAmarre}}" class="btn btn-sm btn-warning">Editar</a>
-                        <a th:href="@{'/amarres/eliminar/' + ${a.idAmarre}}" class="btn btn-sm btn-danger"
+                        <a sec:authorize="hasAuthority('ROLE_SUPERVISOR')"
+                            th:href="@{'/amarres/eliminar/' + ${a.idAmarre}}" class="btn btn-sm btn-danger"
                            onclick="return confirm('¿Eliminar amarre?')">Eliminar</a>
                     </td>
                 </tr>

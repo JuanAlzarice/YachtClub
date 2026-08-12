@@ -24,7 +24,8 @@
                     <td th:text="${e.especialidad}"></td>
                     <td>
                         <a th:href="@{'/empleados/editar/' + ${e.idEmpleado}}" class="btn btn-sm btn-warning">Editar</a>
-                        <a th:href="@{'/empleados/eliminar/' + ${e.idEmpleado}}" class="btn btn-sm btn-danger"
+                        <a sec:authorize="hasAuthority('ROLE_SUPERVISOR')"
+                            th:href="@{'/empleados/eliminar/' + ${e.idEmpleado}}" class="btn btn-sm btn-danger"
                            onclick="return confirm('¿Eliminar empleado?')">Eliminar</a>
                     </td>
                 </tr>

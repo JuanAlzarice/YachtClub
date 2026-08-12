@@ -30,8 +30,14 @@
                     <td th:text="${z.precioMensual}"></td>
 
                     <td>
-                        <a th:href="@{'/zonas/editar/' + ${z.idZona}}" class="btn btn-sm btn-warning">Editar</a>
-                        <a th:href="@{'/zonas/eliminar/' + ${z.idZona}}" 
+                        <a sec:authorize="hasAnyRole('ADMIN', 'SUPERVISOR')"
+                           th:href="@{'/zonas/editar/' + ${z.idZona}}"
+                           class="btn btn-sm btn-warning">
+                            Editar
+                        </a>
+
+                        <a sec:authorize="hasAnyRole('ADMIN', 'SUPERVISOR')"
+                           th:href="@{'/zonas/eliminar/' + ${z.idZona}}"
                            class="btn btn-sm btn-danger"
                            onclick="return confirm('¿Eliminar zona?')">
                             Eliminar
